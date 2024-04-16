@@ -1,0 +1,94 @@
+.container {
+  padding: pxToEm(20px);
+  font-family: Consolas, monaco, monospace;
+  display: flex;
+  gap: pxToEm(50px);
+
+  &__content {
+    padding: pxToEm(20px);
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: pxToEm(10px);
+    display: flex;
+    flex-direction: column;
+    gap: pxToEm(20px);
+  }
+
+  &__drag-drop {
+    // width: pxToEm(600px);
+    height: pxToEm(300px);
+    overflow-x: scroll;
+  }
+
+  &__image {
+    width: 100%;
+  }
+
+  &__buttons {
+    display: flex;
+    gap: pxToEm(10px);
+    flex-direction: column;
+    width: pxToEm(300px);
+  }
+
+  &__button {
+    height: pxToEm(40px);
+    width: 100%;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  &__text {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: pxToEm(10px);
+    padding: pxToEm(20px);
+    font-size: 1.2em;
+    line-height: 1.3em;
+    white-space: pre-wrap;
+    overflow: scroll;
+  }
+}
+
+button {
+  background: #000;
+  color: #fff;
+  transition: all 0.15s ease-in-out, box-shadow 50ms ease-in-out;
+
+  &:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  &:active {
+    box-shadow: inset 0 0 0 pxToEm(2px) #000;
+  }
+}
+
+button:disabled {
+  opacity: 0.5;
+
+  &:hover {
+    background: #000;
+    color: #fff;
+  }
+
+  &:active {
+    box-shadow: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .container {
+    &__drag-drop {
+      width: pxToEm(600px);
+    }
+  }
+}
