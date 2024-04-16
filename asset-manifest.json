@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/dumb-free-png-to-txt/static/css/main.3da5bc54.css",
+    "main.js": "/dumb-free-png-to-txt/static/js/main.0a141b64.js",
+    "index.html": "/dumb-free-png-to-txt/index.html",
+    "main.3da5bc54.css.map": "/dumb-free-png-to-txt/static/css/main.3da5bc54.css.map",
+    "main.0a141b64.js.map": "/dumb-free-png-to-txt/static/js/main.0a141b64.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3da5bc54.css",
+    "static/js/main.0a141b64.js"
+  ]
+}
