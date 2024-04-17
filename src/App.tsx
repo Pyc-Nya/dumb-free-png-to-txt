@@ -82,9 +82,9 @@ function App() {
         </div>
       </div>
       <div className="container__text">
-        <button className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
-        <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea">
-        </textarea>
+        <button disabled={text === ""} className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
+        <button disabled={text === ""} className="container__button copy-button" onClick={() => setText("")}>Очистить текст</button>
+        <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea"></textarea>
       </div>
     </div>
   );
