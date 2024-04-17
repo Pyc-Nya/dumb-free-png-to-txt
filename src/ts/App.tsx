@@ -7,6 +7,7 @@ function App() {
   const [text, setText] = useState<string>('');
   const [lang, setLang] = useState("rus");
   const [loading, setLoading] = useState<"idle" | "pending" | "done">("idle");
+  const [isClicked, setIsClicked] = useState<boolean>(false);
 
   const handleCLick = async () => {
     if (file === null) {
@@ -39,12 +40,29 @@ function App() {
     }
   };
 
+  const handleCopyClick = () => {
+    setIsClicked(true);
+    navigator.clipboard.writeText(text);
+  }
+
   useEffect(() => {
     window.addEventListener("paste", handlePaste as EventListener);
     return () => {
       window.removeEventListener("paste", handlePaste as EventListener);
     };
-  })
+  }, []);
+
+  useEffect(() => {
+    let timer: NodeJS.Timeout;
+    if (isClicked) {
+      timer = setTimeout(() => {
+        setIsClicked(false);
+      }, 1500);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isClicked]);
 
   return (
     <div className="container">
@@ -64,7 +82,10 @@ function App() {
         </div>
       </div>
       <div className="container__text">
-        {text}
+        <button className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
+        <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea">
+          {text}
+        </textarea>
       </div>
     </div>
   );
