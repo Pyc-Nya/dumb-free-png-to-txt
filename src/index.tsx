@@ -1,5 +1,5 @@
 import ReactDOM from 'react-dom/client';
-import App from './ts/App';
+import App from './App';
 import './css/style.css';
 
 const root = ReactDOM.createRoot(
@@ -8,4 +8,3 @@ const root = ReactDOM.createRoot(
 root.render(
   <App />
 );
-
