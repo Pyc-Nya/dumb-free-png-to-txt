@@ -84,7 +84,6 @@ function App() {
       <div className="container__text">
         <button className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
         <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea">
-          {text}
         </textarea>
       </div>
     </div>
