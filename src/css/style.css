@@ -104,7 +104,16 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 3px;
 }
 
+h1 {
+  font-family: Consolas, monaco, monospace;
+  text-align: center;
+  font-size: 2em;
+  font-weight: 700;
+  line-height: 1.5em;
+}
+
 .container {
+  min-height: 95vh;
   padding: 1.25em;
   font-family: Consolas, monaco, monospace;
   display: -webkit-box;
@@ -114,12 +123,6 @@ h1, h2, h3, h4, h5, h6 {
 }
 .container__content {
   padding: 1.25em;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
   border: 1px solid #000;
   border-radius: 0.625em;
   display: -webkit-box;
@@ -129,11 +132,18 @@ h1, h2, h3, h4, h5, h6 {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   gap: 1.25em;
 }
 .container__drag-drop {
   height: 18.75em;
   overflow-x: scroll;
+  margin-bottom: auto;
 }
 .container__image {
   width: 100%;
@@ -157,10 +167,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .container__text {
   width: 100%;
+  min-height: 31.25em;
   border: 1px solid #000;
   border-radius: 0.625em;
   padding: 1.25em;
-  height: 50em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -174,6 +184,7 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.625em;
   width: 100%;
   height: 100%;
+  min-height: 18.75em;
   font-size: 1.2em;
   line-height: 1.3em;
   white-space: pre-wrap;
@@ -181,6 +192,13 @@ h1, h2, h3, h4, h5, h6 {
   border: 1px solid #878787;
 }
 .container__loading-status {
+  text-align: center;
+}
+.container__file-size {
+  text-align: center;
+}
+.container__file-size-warning {
+  color: red;
   text-align: center;
 }
 

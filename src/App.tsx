@@ -2,14 +2,16 @@ import { useEffect, useState } from "react";
 import { FileUploader } from "react-drag-drop-files";
 import Tesseract from "tesseract.js";
 
+const MAXSIZE = 4 * 1024 * 1024;
+
 function App() {
   const [file, setFile] = useState<File | null>(null);
   const [text, setText] = useState<string>('');
-  const [lang, setLang] = useState("rus");
+  const [lang, setLang] = useState<"rus" | "eng">("rus");
   const [loading, setLoading] = useState<"idle" | "pending" | "done">("idle");
   const [isClicked, setIsClicked] = useState<boolean>(false);
 
-  const handleCLick = async () => {
+  const handleAccept = async () => {
     if (file === null) {
       return;
     }
@@ -45,6 +47,12 @@ function App() {
     navigator.clipboard.writeText(text);
   }
 
+  const terminateProcess = () => {
+    setFile(null);
+    setText('');
+    setLoading('idle');
+  }
+
   useEffect(() => {
     window.addEventListener("paste", handlePaste as EventListener);
     return () => {
@@ -64,21 +72,40 @@ function App() {
     };
   }, [isClicked]);
 
+  useEffect(() => {
+    if (file !== null && file.size > 10 * 1024 * 1024) {
+      setFile(null);
+      alert("Файл слишком большой (больше 10 МБ). Вы будете ожидать его обработку вечность. Пожалуйста, выберите другой.");
+    }
+  }, [file]);
+
   return (
+    <>
+    <h1>Конвертер изображений в текст</h1>
     <div className="container">
       <div className="container__content">
         <div className="container__drag-drop">
           {file === null ?
           <DragDrop setFile={setFile} /> :
-          <img src={URL.createObjectURL(file)} className="container__image" alt="" />}
+          <img src={URL.createObjectURL(file)} className="container__image" alt="" />
+          }
         </div>
-        <div className="container__loading-status">{loading === "pending" ? "Загрузка..." : file === null ? "Добавьте файл или вставьте, нажав ctrl+V" : "Готово"}</div>
+        {file !== null &&
+        <>
+        <div className="container__file-size">Размер изображения: {(file.size / 1024 / 1024).toFixed(3)} МБ</div>
+        {(file.size > MAXSIZE) && 
+        <div className="container__file-size-warning">Дружище, твой файл весит более {MAXSIZE / 1024 / 1024} МБ. Обработка может занять длительное время!</div>
+        }
+        </>
+        }
+        <div className="container__loading-status">Статус: {loading === "pending" ? "Загрузка..." : file === null ? "Добавьте файл или вставьте, нажав ctrl+V" : "Ожидает подтверждения"}</div>
         <div className="container__lang">Язык: {lang}</div>
         <div className="container__buttons">
-          <button disabled={loading === "pending" || file === null} onClick={handleCLick} className="container__button">{"Подтвердить"}</button>
+          <button disabled={loading === "pending" || file === null} onClick={handleAccept} className="container__button">{"Подтвердить"}</button>
           <button disabled={loading === "pending" || file === null} onClick={() => setFile(null)} className="container__button">Убрать файл</button>
           <button disabled={loading === "pending" || lang === "rus"} onClick={() => setLang("rus")} className="container__button">Выставить русский язык</button>
           <button disabled={loading === "pending" || lang === "eng"} onClick={() => setLang("eng")} className="container__button">Выставить английский язык</button>
+          <button disabled={loading !== "pending"} onClick={terminateProcess} className="container__button">Остановить процесс обработки</button>
         </div>
       </div>
       <div className="container__text">
@@ -87,6 +114,7 @@ function App() {
         <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea"></textarea>
       </div>
     </div>
+    </>
   );
 }
 
@@ -98,6 +126,5 @@ function DragDrop({ setFile }: { setFile: (file: File) => void }) {
     <FileUploader handleChange={handleChange} name="file" types={["PNG"]} />
   );
 }
-
 
 export default App;
