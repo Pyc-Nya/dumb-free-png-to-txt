@@ -93,6 +93,7 @@ h1 {
 .text {
   &__buttons {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
     gap: pxToEm(10px);
   }
