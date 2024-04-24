@@ -113,7 +113,7 @@ h1 {
 }
 
 .container {
-  min-height: 95vh;
+  min-height: 90vh;
   padding: 1.25em;
   font-family: Consolas, monaco, monospace;
   display: -webkit-box;
@@ -141,7 +141,7 @@ h1 {
   gap: 1.25em;
 }
 .container__drag-drop {
-  height: 18.75em;
+  height: 15.625em;
   overflow-x: scroll;
   margin-bottom: auto;
 }
@@ -204,6 +204,36 @@ h1 {
 
 .copy-button {
   width: 18.75em;
+}
+
+.text__buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  gap: 0.625em;
+}
+.text__main-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625em;
+}
+.text__replace-buttons {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  gap: 0.625em;
 }
 
 button {

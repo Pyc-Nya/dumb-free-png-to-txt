@@ -53,6 +53,15 @@ function App() {
     setLoading('idle');
   }
 
+  const handleReplaceClick = (charToReplace: string, newChar: string) => {
+    if (text === '') {
+      return;
+    }
+    const escapedCharToReplace = charToReplace.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    const newText = text.replace(new RegExp(escapedCharToReplace, 'gi'), newChar);
+    setText(newText);
+  }
+
   useEffect(() => {
     window.addEventListener("paste", handlePaste as EventListener);
     return () => {
@@ -108,9 +117,19 @@ function App() {
           <button disabled={loading !== "pending"} onClick={terminateProcess} className="container__button">Остановить процесс обработки</button>
         </div>
       </div>
-      <div className="container__text">
-        <button disabled={text === ""} className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
-        <button disabled={text === ""} className="container__button copy-button" onClick={() => setText("")}>Очистить текст</button>
+      <div className="container__text text">
+        <div className="text__buttons">
+          <div className="text__main-buttons">
+            <button disabled={text === ""} className="container__button copy-button" onClick={handleCopyClick}>{isClicked ? "Текст скопирован" : "Скопировать текст"}</button>
+            <button disabled={text === ""} className="container__button copy-button" onClick={() => setText("")}>Очистить текст</button>
+          </div>
+          <div className="text__replace-buttons">
+            <button disabled={text === ""} className="container__button copy-button" onClick={() => handleReplaceClick('©', 'c')}>Заменить © на c</button>
+            <button disabled={text === ""} className="container__button copy-button" onClick={() => handleReplaceClick('€', 'c')}>Заменить € на c</button>
+            <button disabled={text === ""} className="container__button copy-button" onClick={() => handleReplaceClick('¢', 'c')}>Заменить ¢ на c</button>
+            <button disabled={text === ""} className="container__button copy-button" onClick={() => handleReplaceClick('|', 'I')}>Заменить | на I</button>
+          </div>
+        </div>
         <textarea value={text} onChange={(e) => setText(e.target.value)} className="container__textarea"></textarea>
       </div>
     </div>

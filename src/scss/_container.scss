@@ -7,7 +7,7 @@ h1 {
 }
 
 .container {
-  min-height: 95vh;
+  min-height: 90vh;
   padding: pxToEm(20px);
   font-family: Consolas, monaco, monospace;
   display: flex;
@@ -26,7 +26,7 @@ h1 {
 
   &__drag-drop {
     // width: pxToEm(600px);
-    height: pxToEm(300px);
+    height: pxToEm(250px);
     overflow-x: scroll;
     margin-bottom: auto;
   }
@@ -88,6 +88,26 @@ h1 {
 
 .copy-button {
   width: pxToEm(300px);
+}
+
+.text {
+  &__buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: pxToEm(10px);
+  }
+
+  &__main-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: pxToEm(10px);
+  }
+
+  &__replace-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: pxToEm(10px);
+  }
 }
 
 button {
