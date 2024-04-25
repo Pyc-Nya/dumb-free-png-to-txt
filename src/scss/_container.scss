@@ -104,10 +104,19 @@ h1 {
     gap: pxToEm(10px);
   }
 
-  &__replace-buttons {
+  &__replace {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    align-items: baseline;
     gap: pxToEm(10px);
+  }
+
+  &__replace-input {
+    height: pxToEm(35px);
+    width: pxToEm(100px);
+    text-align: center;
+    border: pxToEm(1px) solid #000;
+    border-radius: pxToEm(2px);
   }
 }
 

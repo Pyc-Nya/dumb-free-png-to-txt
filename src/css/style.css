@@ -227,15 +227,23 @@ h1 {
           flex-direction: column;
   gap: 0.625em;
 }
-.text__replace-buttons {
+.text__replace {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-align: baseline;
+      -ms-flex-align: baseline;
+          align-items: baseline;
   gap: 0.625em;
+}
+.text__replace-input {
+  height: 2.1875em;
+  width: 6.25em;
+  text-align: center;
+  border: 0.0625em solid #000;
+  border-radius: 0.125em;
 }
 
 button {
